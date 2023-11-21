@@ -5,6 +5,7 @@ import java.sql.SQLException;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,8 +23,8 @@ public class UsuarioService {
 		connProvider = new OpenConnection();
 	}
 
-	@GetMapping("/user/{email}/{pass}")
-	public Usuario login(@PathVariable String email,@PathVariable String pass) throws AutenticarException, FCTException {
+	@GetMapping("/login")
+	public Usuario login(@RequestParam String email, @RequestParam String pass) throws AutenticarException, FCTException {
 		Usuario user = new Usuario();
 		UsuarioDao userD = new UsuarioDao();
 		Connection conn = null;
@@ -52,7 +53,7 @@ public class UsuarioService {
 		}
 
 	}
-@PutMapping
+@PostMapping("/usuario")
 	public void altaUsuario(@RequestBody Usuario usuario) throws FCTException {
 		Connection conn = null;
 		try {

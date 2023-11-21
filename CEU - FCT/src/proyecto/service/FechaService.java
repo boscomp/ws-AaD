@@ -23,7 +23,7 @@ public class FechaService {
 		connProvider= new OpenConnection();
 	}
 	@GetMapping("/fechas")
-	public List <Fecha> consultarFechasActuales() {
+	public List <Fecha> consultarFechasActuales() throws FCTException {
 		FechaDao fd = new FechaDao();
 		Connection conn = null;
 		List <Fecha> fechasActuales = new ArrayList<>();
@@ -45,7 +45,7 @@ public class FechaService {
 			fechasActuales = fd.consultarFechas(conn, anho, evaluacion);
 		} catch (SQLException e) {
 			
-			e.printStackTrace();
+			throw new FCTException("Error al consultar fechas en BBDD", e);
 		}
 		return fechasActuales;
 	}

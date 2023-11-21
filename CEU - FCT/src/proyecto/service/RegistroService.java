@@ -30,7 +30,7 @@ public class RegistroService {
 		connProvider = new OpenConnection();
 	}
 
-	@GetMapping("/registros/{idUsuario}")
+	@GetMapping("/registro/{idUsuario}")
 	public List<Registro> consultarRegistrosUsuario(@PathVariable Long idUsuario) throws FCTException {
 		Connection conn = null;
 		try {
@@ -47,7 +47,7 @@ public class RegistroService {
 		}
 	}
 	
-	@PutMapping("/registros")
+	@PutMapping("/registro")
 	public void crearRegistro(@RequestBody Registro registro) throws FCTException {
 		Connection conn = null;
 		try {
